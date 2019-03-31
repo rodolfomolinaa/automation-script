@@ -24,24 +24,28 @@ public class Google {
 	 * Method to verify if URL exist
 	 * 
 	 * @param driver Instance of Chrome driver
+	 * @param name   class you want to search
 	 * @param url    you want to verify if exists
 	 * @return
 	 */
-	public static String verifyURL(WebDriver driver, String url) {
+	public static String verifyURL(WebDriver driver, String name, String url) {
 		Boolean exists = false;
 		try {
-			List<WebElement> elements = driver.findElements(By.className("iUh30"));
+			List<WebElement> elements = driver.findElements(By.className(name));
 			Iterator<WebElement> i = elements.iterator();
 
 			while (i.hasNext()) {
 				WebElement element = i.next();
 				if (element.getText().equals(url)) {
-					System.out.println(url + " exists");
 					exists = true;
 					break;
-				} else {
-					System.out.println(url + " does not exists");
 				}
+			}
+
+			if (exists) {
+				System.out.println(url + " exists");
+			} else {
+				System.out.println(url + " does not exists");
 			}
 
 		} catch (Exception e) {
