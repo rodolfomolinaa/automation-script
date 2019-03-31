@@ -3,6 +3,8 @@ package selenium;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import pages.FocusCareer;
+import pages.FocusCareerFound;
 import pages.FocusHome;
 import pages.Google;
 
@@ -17,13 +19,28 @@ public class LaunchChrome {
 		// Launch Chrome and direct it to Base URL
 		driver.get("http://www.google.com");
 
+		// Search in Google
 		Google.searchInGoogle(driver, "Focus Services");
-		Google.verifyURL(driver, "iUh30", "https://www.focusservices.com/");
-		Google.getInFocusPage(driver, "h3.LC20lb", "Focus Services – Beyond Expectations");
+		// Verify if URL Exists
+		Google.verifyURL(driver, "https://www.focusservices.com/");
+		// Get in Focus Services site
+		Google.getInFocusPage(driver, "Focus Services – Beyond Expectations");
 
-		FocusHome.verifyButton(driver, "avia_iconbox_title", "Now Hiring!");
-		FocusHome.getInCareerPage(driver, "avia-menu-text", "Careers");
+		// Verify if the button exists
+		FocusHome.verifyButton(driver, "Now Hiring!");
+		// Click Careers Tab
+		FocusHome.getInCareerPage(driver, "Careers");
 
+		// Search a work position
+		FocusCareer.searchWorkPosition(driver, "inbound");
+		// Select the second work position found
+		FocusCareer.clickWorkCareer(driver, "position");
+
+		// Verify if the work position has description
+		FocusCareerFound.searchDescription(driver);
+
+		// Quit the test
+		driver.quit();
 	}
 
 }

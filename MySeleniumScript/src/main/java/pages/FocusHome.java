@@ -10,17 +10,16 @@ import org.openqa.selenium.WebElement;
 public class FocusHome {
 
 	/**
-	 * Method to verify if a button exist
+	 * Method to verify if a button exist.
 	 * 
-	 * @param driver Instance of Chrome driver
-	 * @param name   class you want to search
-	 * @param button you want to verify if exists
-	 * @return
+	 * @param driver Instance of Chrome Driver.
+	 * @param button You want to verify if exists.
+	 * @return True if the button exists or false if it does not exist.
 	 */
-	public static String verifyButton(WebDriver driver, String name, String button) {
+	public static String verifyButton(WebDriver driver, String button) {
 		Boolean exists = false;
 		try {
-			List<WebElement> elements = driver.findElements(By.className(name));
+			List<WebElement> elements = driver.findElements(By.className("avia_iconbox_title"));
 			Iterator<WebElement> i = elements.iterator();
 
 			while (i.hasNext()) {
@@ -44,9 +43,16 @@ public class FocusHome {
 		return exists.toString();
 	}
 
-	public static void getInCareerPage(WebDriver driver, String name, String text) {
+	/**
+	 * Method to go to career page.
+	 * 
+	 * @param driver Instance of Chrome Driver.
+	 * @param text   Button you are looking to redirect.
+	 */
+
+	public static void getInCareerPage(WebDriver driver, String text) {
 		try {
-			List<WebElement> anchors = driver.findElements(By.className(name));
+			List<WebElement> anchors = driver.findElements(By.className("avia-menu-text"));
 			Iterator<WebElement> i = anchors.iterator();
 
 			while (i.hasNext()) {
